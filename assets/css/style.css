@@ -1,0 +1,175 @@
+.active{
+    background: rgb(194, 0, 0, 0.2);
+}
+
+.nav-link{
+    border-radius: 16px 16px 0px 0px;
+    background: rgb(194, 0, 0, 0.2) !important;
+}
+
+
+.vehicle_search_container{
+    border-radius: 50px;
+}
+
+.vehicle_details{
+    border-radius: 2rem;
+    padding: 2rem;
+}
+
+.form-control:focus {
+    border-color: initial;
+    box-shadow: none;
+}
+
+.vehicle_number{
+    outline: none;
+    border: 0;
+    width: 100%;
+}
+
+.not_my_vehicle{
+    background: #e6e4e4;
+    color: #1b1c1b;
+    padding: 0.875rem 1rem;
+    border-radius: 50px;
+}
+
+.not_my_vehicle:hover {
+    background: #505050;
+    color: #fff;
+}
+
+.btn-green{
+    background-color: #C1F35E;
+    padding: 10px 20px;
+    border-radius: 50px;
+    width: 200px;
+    height: 60px;
+}
+
+.btn-green:hover{
+    background-color: #C1F35E;
+}
+
+#search_button{
+    background: #c20000;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;;
+}
+
+.tab-panel{
+    border-radius: 0px 0px 20px 20px;
+}
+
+.choose_services {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 column by default */
+    margin-top: 16px;
+    gap: 16px;
+}
+
+@media (min-width: 576px) {
+    .choose_services {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on large mobile */
+    }
+}
+
+@media (min-width: 992px) {
+    .choose_services {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns on LG */
+    }
+}
+
+.choose_services .shadow.rounded-3.w-100.d-flex.align-items-center {
+    display: flex;
+    align-items: center;
+}
+
+.choose_services .shadow.rounded-3 .icon {
+    display: inline-block;
+    background-color: #3498db;
+    border-radius: 50%;
+    padding: 4px;
+    transition: background-color 0.3s;
+    margin-right: 12px;
+}
+
+.choose_services .shadow.rounded-3:hover .icon {
+    background-color: #2980b9;
+}
+
+.choose_services .icon svg {
+    width: 100%;
+    height: auto;
+    color: #fff;
+}
+
+.choose_services > div .icon {
+    margin-right: 8px;
+}
+
+.services_anchor{
+    padding: 40px 20px;
+    background-color: #FAFAFA;
+}
+
+.hiq_capra_btn{
+    width: 100%;
+    background-color: #c20000;
+    padding: 16px 24px;
+    width: 100%;
+    border-radius: 50px;
+    color: white;
+    text-wrap: nowrap;
+    outline: none;
+    border: none;
+}
+
+.bg-gray{
+    background: #FAFAFA;
+}
+
+.service_tab{
+    padding: 30px 16px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.custom-accordion-button {
+    background: #C0BAB1;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    border: 0;
+    outline: 0;
+}
+
+.accordion-button-active:active {
+    background: #C0BAB1;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    border: 0;
+    outline: 0;
+}
+
+.selected{
+    background: rgb(194, 0, 0, 0.3);
+}
+
+.custom-accordion-button:focus {
+    box-shadow: none;
+}
+
+
+.content_section{
+    background: #FAFAFA;
+    padding: 40px 20px;
+}
+
+.date__box{
+    background: #E6E4E4;
+}
