@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Detail</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.0/css/responsive.dataTables.css">
     <style>
@@ -51,15 +52,29 @@
         .sidebar ul {
             list-style-type: none;
             padding: 0;
+            margin-top: 40px;
         }
 
         .sidebar ul li {
-            padding: 10px;
+            padding: 16px 10px;
             border-radius: 8px;
+            display: flex;
+            column-gap: 10px;
+            transition: color 0.3s;
+            align-items: center;
         }
 
         .sidebar ul li:hover {
             background-color: #ffffff;
+            cursor: pointer;
+        }
+
+        .sidebar ul li span{
+            color: inherit;
+        }
+
+        .sidebar ul li:hover span i::before {
+            color: #c20000;
         }
 
         .sidebar ul li a {
@@ -177,21 +192,20 @@
         <div class="sidebar">
             <div class="sidebar_logo_container"><img class="logo" loading="lazy" src="https://gforceautocare.com/wp-content/uploads/2024/01/Logo-Header-1.svg" alt="Logo"></div>
             <ul>
-                <li class="nav-link"><a href="orderDetail.php">Booking</a></li>
-                <li class="nav-link"><a href="calender.php">Calender</a></li>
-                <li id="logout_btn"><a href="#">Logout</a></li>
+                <li class="nav-link"><span><i class="bi bi-calendar3"></i></span><a href="orderDetail.php">Booking</a></li>
+                <li class="nav-link"><span><i class="bi bi-box-arrow-right"></i></span><a href="calender.php">Calender</a></li>
+                <li id="logout_btn"><span><i class="bi bi-calendar-date-fill"></i></span><a href="#">Logout</a></li>
             </ul>
         </div>
 
         <div class="content">
             <h2>Order Detail Content</h2>
                 <section id="table__section">
-                    <div class="bulk_delete"><button id="bulk_delete">Bulk Delete</button></div>
+                    <div class="bulk_delete"><button id="bulk_delete">Delete</button></div>
                     <table id="main__table" class="display main__table">
                         <thead>
                             <tr>
                                 <th scope="col"></th>
-                                <th scope="col">Serial No:</th>
                                 <th scope="col">Fullname</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Address</th>
@@ -239,8 +253,8 @@
                     text: "Are you sure you want to logout?",
                     icon: "warning",
                     showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
+                    confirmButtonColor: "#000000",
+                    cancelButtonColor: "#c20000",
                     confirmButtonText: "Yes, Log Out!"
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -300,7 +314,6 @@
                     populateData += `
                         <tr>
                             <td><input type="checkbox" data-id=${details.id} class="deleteCheckbox"></td>
-                            <td>${details.id}</td>
                             <td>${details.fullname}</td>
                             <td>${details.phone}</td>
                             <td>${details.address}</td>
