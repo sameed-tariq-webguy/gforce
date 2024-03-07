@@ -107,7 +107,8 @@ class Database {
 }
 
 
-$db = Database::getInstance('localhost', 'sameed', 'sameed', 'hiqonline');    
+$db = Database::getInstance('localhost', 'u788702992_hiqonline', 'Welcome2024@@', 'u788702992_hiqonline');    
+// $db = Database::getInstance('localhost', 'sameed', 'sameed', 'hiqonline');  
 
 // Now $conn can be used for database operations
 

@@ -5,15 +5,15 @@ if (isset($_SESSION['logged_In']) && $_SESSION['logged_In'] === TRUE) {
     exit();
 }
 
-// $servername = "localhost";
-// $username = "u788702992_hiqonline";
-// $password = "Welcome2024@@";
-// $database = "u788702992_hiqonline";
-
 $servername = "localhost";
-$username = "sameed";
-$password = "sameed";
-$database = "hiqonline";
+$username = "u788702992_hiqonline";
+$password = "Welcome2024@@";
+$database = "u788702992_hiqonline";
+
+// $servername = "localhost";
+// $username = "sameed";
+// $password = "sameed";
+// $database = "hiqonline";
 $error = "";
 
 $conn = new mysqli($servername, $username, $password, $database);
@@ -133,10 +133,12 @@ $conn->close();
             display: flex;
             justify-content: center;
             align-items: center;
+            
         }
 
         .logo img{
             margin: auto;
+            max-width: 200px;
         }
 
         .login_form{
@@ -168,7 +170,7 @@ $conn->close();
 <body>
     <section class="login_section">
         <div class="login_card">
-            <div class="logo"><img loading="lazy" src="https://dummyimage.com/200x100/dedede/fff" alt="Logo"></div>
+            <div class="logo"><img loading="lazy" src="https://gforceautocare.com/wp-content/uploads/2024/01/Logo-Header-1.svg" alt="Logo"></div>
             <form class="login_form" action="" method="POST">
                 <div class="input_container">
                     <label for="">Email or Username</label>
