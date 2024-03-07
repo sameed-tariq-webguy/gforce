@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['logged_In']) && $_SESSION['logged_In'] === TRUE) {
-    header("Location: https://gforceautocare.com/booking-details/orderData.php");
+    header("Location: orderDetail.php");
     exit();
 }
 
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['logged_In'] = TRUE;
-                header("Location: orderData.php");
+                header("Location: orderDetail.php");
                 exit();
             } else {
                 $error = "Invalid password.";
@@ -168,7 +168,7 @@ $conn->close();
 <body>
     <section class="login_section">
         <div class="login_card">
-            <div class="logo"><img src="https://dummyimage.com/200x100/dedede/fff" alt="Logo"></div>
+            <div class="logo"><img loading="lazy" src="https://dummyimage.com/200x100/dedede/fff" alt="Logo"></div>
             <form class="login_form" action="" method="POST">
                 <div class="input_container">
                     <label for="">Email or Username</label>

@@ -1,3 +1,8 @@
+<?php 
+    session_start();
+    if (isset($_SESSION['logged_In']) && $_SESSION['logged_In'] === TRUE) { ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,9 +21,19 @@
             max-height: 100vh;
         }
 
+        .active{
+            background: white;
+            color: #c20000;
+        }
+
+        .active a{
+            color: #c20000 !important;
+        }
+
         .container {
             display: flex;
             flex-wrap: wrap;
+            height: 100vh;
         }
 
         .sidebar {
@@ -26,7 +41,7 @@
             background-color: #c20000;
             color: #fff;
             padding: 20px;
-            height: 100vh;
+            overflow-y: auto;
         }
 
         .sidebar h2 {
@@ -43,13 +58,31 @@
             border-radius: 8px;
         }
 
+        .sidebar ul li:hover {
+            background-color: #ffffff;
+        }
+
         .sidebar ul li a {
             color: #fff;
             text-decoration: none;
         }
 
-        .sidebar ul li:hover {
-            background-color: #555;
+        .sidebar ul li:hover a {
+            color: #c20000;
+        }
+
+        .sidebar ul li a:focus {
+            color: #c20000;
+        }
+
+        .sidebar_logo_container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sidebar_logo_container .logo{
+            max-width: 150px;
         }
 
         .content {
@@ -77,14 +110,6 @@
             margin: auto;
             width: 100% !important;
             overflow-x: visible;
-        }
-
-
-
-        .dataTables_wrapper {
-            max-width: 1200px;
-            margin: auto;
-            box-sizing: border-box;
         }
 
         #main__table_wrapper{
@@ -124,24 +149,6 @@
             background-color: #ffffff;
         }
 
-        .dataTables_length,
-        .dataTables_filter,
-        .dataTables_info,
-        .dataTables_paginate {
-            padding: 20px 0px !important;
-        }
-
-        .dataTables_wrapper .dataTables_paginate .paginate_button.current,
-        .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-            background: #c20000;
-            color: white !important;
-        }
-
-        .paginate_button:hover {
-            background: #c20000 !important;
-            color: white !important;
-        }
-
         .bulk_delete{
             width: 100%;
             display: flex;
@@ -158,17 +165,20 @@
             border: 0;
             cursor: pointer;
         }
+
+        
+
+        
     </style>
 </head>
 
 <body>
     <div class="container">
         <div class="sidebar">
-            <h2>Gforce</h2>
+            <div class="sidebar_logo_container"><img class="logo" loading="lazy" src="https://gforceautocare.com/wp-content/uploads/2024/01/Logo-Header-1.svg" alt="Logo"></div>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="orderData.php">Booking</a></li>
-                <li><a href="calender.php">Calender</a></li>
+                <li class="nav-link"><a href="orderDetail.php">Booking</a></li>
+                <li class="nav-link"><a href="calender.php">Calender</a></li>
                 <li id="logout_btn"><a href="#">Logout</a></li>
             </ul>
         </div>
@@ -218,7 +228,11 @@
     <!-- Script -->
     <script>
         $(document).ready(function() {
-            
+            $(".nav-link").click(function(){
+                $(".nav-link").removeClass("active");
+                $(this).addClass("active");
+            });
+
             $("#logout_btn").click(function() {
                 Swal.fire({
                     title: "Logout?",
@@ -239,6 +253,7 @@
                             success: function(response) {
                                 const responseData = JSON.parse(response);
                                 const operation = responseData.operation;
+                                console.log(operation);
                                 if (operation) {
                                     window.location.href = 'login.php'
                                 }
@@ -372,3 +387,6 @@
 </body>
 
 </html>
+
+
+<?php } else{header("Location: login.php"); exit();} ?>

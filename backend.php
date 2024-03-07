@@ -3,7 +3,7 @@
 
 <?php
 
-session_start();
+
 $requestData = json_decode(file_get_contents('php://input'), true);
 
 class Database {
@@ -137,11 +137,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ids'])) {
 // Logout
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'logout') {
-    unset($_SESSION['logged_in']);
+    session_start();
+    unset($_SESSION['logged_In']);
     if (!isset($_SESSION['logged_in'])) {
         echo json_encode(array("operation" => true, "message" => "Session destroyed successfully"));
+        exit;
     } else {
         echo json_encode(array("operation" => false, "message" => "Failed to destroy session"));
+        exit;
     }
-    exit;
+    
 }

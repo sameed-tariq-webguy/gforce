@@ -1,3 +1,8 @@
+<?php 
+    session_start();
+    if (isset($_SESSION['logged_In']) && $_SESSION['logged_In'] === TRUE) { ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +21,7 @@
         .container {
             display: flex;
             flex-wrap: wrap;
+            height: 100vh;
         }
 
         .sidebar {
@@ -23,7 +29,7 @@
             background-color: #c20000;
             color: #fff;
             padding: 20px;
-            height: 100vh;
+            overflow-y: auto;
         }
 
         .sidebar h2 {
@@ -38,6 +44,11 @@
         .sidebar ul li {
             padding: 10px;
             border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #ffffff;
         }
 
         .sidebar ul li a {
@@ -45,13 +56,30 @@
             text-decoration: none;
         }
 
-        .sidebar ul li:hover {
-            background-color: #555;
+        .sidebar ul li:hover a {
+            color: #c20000;
+        }
+
+        .sidebar ul li a:focus {
+            color: #c20000;
+        }
+
+        .sidebar_logo_container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sidebar_logo_container .logo{
+            max-width: 150px;
         }
 
         .content {
             flex: 1;
-            padding: 20px;
+            padding: 20px 20px 40px 20px;
+            max-height: 100vh;
+            height: 100%;
+            overflow-y: auto;
         }
 
         @media only screen and (max-width: 768px) {
@@ -71,11 +99,10 @@
 <body>
     <div class="container">
         <div class="sidebar">
-            <h2>Gforce</h2>
+        <div class="sidebar_logo_container"><img class="logo" loading="lazy" src="https://gforceautocare.com/wp-content/uploads/2024/01/Logo-Header-1.svg" alt="Logo"></div>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="orderDetail.php">Booking</a></li>
-                <li><a href="#">Calender</a></li>
+                <li class="nav-link"><a href="orderDetail.php">Booking</a></li>
+                <li class="nav-link"><a href="calender.php">Calender</a></li>
                 <li id="logout_btn"><a href="#">Logout</a></li>
             </ul>
         </div>
@@ -94,6 +121,12 @@
 
     <!-- Script -->
     <script>
+
+        $(".nav-link").click(function(){
+            $(".nav-link").removeClass("active");
+            $(this).addClass("active");
+        });
+
         $(document).ready(function () {
             $("#logout_btn").click(function () {
                 Swal.fire({
@@ -128,3 +161,5 @@
     </script>
 </body>
 </html>
+
+<?php } else{header("Location: login.php"); exit();} ?>
