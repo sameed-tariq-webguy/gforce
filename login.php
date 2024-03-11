@@ -5,15 +5,15 @@ if (isset($_SESSION['logged_In']) && $_SESSION['logged_In'] === TRUE) {
     exit();
 }
 
-$servername = "localhost";
-$username = "u788702992_hiqonline";
-$password = "Welcome2024@@";
-$database = "u788702992_hiqonline";
-
 // $servername = "localhost";
-// $username = "sameed";
-// $password = "sameed";
-// $database = "hiqonline";
+// $username = "u788702992_hiqonline";
+// $password = "Welcome2024@@";
+// $database = "u788702992_hiqonline";
+
+$servername = "localhost";
+$username = "sameed";
+$password = "sameed";
+$database = "hiqonline";
 $error = "";
 
 $conn = new mysqli($servername, $username, $password, $database);

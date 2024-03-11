@@ -12,10 +12,24 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
+        @font-face {
+            font-family: Avenir-Normal;
+            src: url('assets/avenir_ff/AvenirLTStd-Book.otf');
+        }
+        @font-face {
+            font-family: Avenir-Bold;
+            src: url('assets/avenir_ff/AvenirLTStd-Black.otf');
+        }
+
+        *{
+            font-family: Avenir-Normal;
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+
         }
 
         .container {
@@ -28,32 +42,36 @@
             flex: 0 0 250px;
             background-color: #c20000;
             color: #fff;
-            padding: 20px;
-            overflow-y: auto;
+            height: 100%;
         }
 
         .sidebar h2 {
             text-align: center;
         }
 
+        .fc-toolbar-title{
+            font-family: Avenir-Bold;
+        }
+
         .sidebar ul {
             list-style-type: none;
-            padding: 0;
-            margin-top: 40px;
+            padding: 60px 20px 40px 20px;
+            margin: 0;
         }
 
         .sidebar ul li {
-            padding: 16px 10px;
-            border-radius: 8px;
+            padding: 16px 25px;
             display: flex;
             column-gap: 10px;
             transition: color 0.3s;
             align-items: center;
+            border-bottom: 2px solid #b01a1a;
         }
 
         .sidebar ul li:hover {
             background-color: #ffffff;
             cursor: pointer;
+            border-radius: 8px;
         }
 
         .sidebar ul li span{
@@ -81,6 +99,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
 
         .sidebar_logo_container .logo{
@@ -89,10 +108,7 @@
 
         .content {
             flex: 1;
-            padding: 20px 20px 40px 20px;
-            max-height: 100vh;
             height: 100%;
-            overflow-y: auto;
         }
 
         @media only screen and (max-width: 768px) {

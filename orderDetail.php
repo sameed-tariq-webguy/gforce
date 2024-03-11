@@ -14,14 +14,35 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.0/css/responsive.dataTables.css">
     <style>
+        @font-face {
+            font-family: Avenir-Normal;
+            src: url('assets/avenir_ff/AvenirLTStd-Book.otf');
+        }
+        @font-face {
+            font-family: Avenir-Bold;
+            src: url('assets/avenir_ff/AvenirLTStd-Black.otf');
+        }
+
+        *{
+            font-family: Avenir-Normal;
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             overflow: hidden;
-            max-height: 100vh;
         }
 
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            overflow: auto;
+        }
         .active{
             background: white;
             color: #c20000;
@@ -31,42 +52,40 @@
             color: #c20000 !important;
         }
 
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            height: 100vh;
-        }
-
         .sidebar {
             flex: 0 0 250px;
             background-color: #c20000;
             color: #fff;
-            padding: 20px;
-            overflow-y: auto;
+            height: 100%;
         }
-
+        
         .sidebar h2 {
             text-align: center;
         }
 
+        .fc-toolbar-title{
+            font-family: Avenir-Bold;
+        }
+
         .sidebar ul {
             list-style-type: none;
-            padding: 0;
-            margin-top: 40px;
+            padding: 60px 20px 40px 20px;
+            margin: 0;
         }
 
         .sidebar ul li {
-            padding: 16px 10px;
-            border-radius: 8px;
+            padding: 16px 25px;
             display: flex;
             column-gap: 10px;
             transition: color 0.3s;
             align-items: center;
+            border-bottom: 2px solid #b01a1a;
         }
 
         .sidebar ul li:hover {
             background-color: #ffffff;
             cursor: pointer;
+            border-radius: 8px;
         }
 
         .sidebar ul li span{
@@ -94,18 +113,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
 
         .sidebar_logo_container .logo{
             max-width: 150px;
         }
 
-        .content {
-            flex: 1;
-            padding: 20px 20px 40px 20px;
-            max-height: 100vh;
-            overflow-y: auto;
-        }
+        
 
         @media only screen and (max-width: 768px) {
             .sidebar {
@@ -121,10 +136,9 @@
 
         /* Table CSS */
         .main__table {
-            max-width: 1200px;
             margin: auto;
             width: 100% !important;
-            overflow-x: visible;
+            overflow-x: visible !important;
         }
 
         #main__table_wrapper{

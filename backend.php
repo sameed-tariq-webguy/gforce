@@ -93,6 +93,24 @@ class Database {
         }
     }
 
+
+    public function selectedDates() {
+        $sql = "SELECT DISTINCT selected_dates FROM hiqonline_data";
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row['selected_dates'];
+            }
+            echo json_encode($data, true);
+            exit;
+        } else {
+            echo json_encode(["error" => "No records found"]);
+            exit;
+        }
+    }
+
     public function removeData($ids){
         $sanitizedIds = array_map('intval', $ids);
         $sql = "DELETE FROM hiqonline_data WHERE id IN (" . implode(',', $sanitizedIds) . ")";
@@ -107,8 +125,8 @@ class Database {
 }
 
 
-$db = Database::getInstance('localhost', 'u788702992_hiqonline', 'Welcome2024@@', 'u788702992_hiqonline');    
-// $db = Database::getInstance('localhost', 'sameed', 'sameed', 'hiqonline');  
+// $db = Database::getInstance('localhost', 'u788702992_hiqonline', 'Welcome2024@@', 'u788702992_hiqonline');    
+$db = Database::getInstance('localhost', 'sameed', 'sameed', 'hiqonline');  
 
 // Now $conn can be used for database operations
 
@@ -148,4 +166,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'logout') {
         exit;
     }
     
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $requestData['reason'] === 'want_dates') {
+    $selectedDates = $db->selectedDates();
+    echo $selectedDates;
 }

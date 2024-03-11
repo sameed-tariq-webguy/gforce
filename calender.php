@@ -10,11 +10,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calender</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    
     <style>
+        
+        @font-face {
+            font-family: Avenir-Normal;
+            src: url('assets/avenir_ff/AvenirLTStd-Book.otf');
+        }
+        @font-face {
+            font-family: Avenir-Bold;
+            src: url('assets/avenir_ff/AvenirLTStd-Black.otf');
+        }
+
+        *{
+            font-family: Avenir-Normal;
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+
         }
 
         .container {
@@ -23,36 +40,45 @@
             height: 100vh;
         }
 
+        #calendar{
+            height: 100%;
+            padding: 40px;
+        }
+
         .sidebar {
             flex: 0 0 250px;
             background-color: #c20000;
             color: #fff;
-            padding: 20px;
-            overflow-y: auto;
+            height: 100%;
         }
 
         .sidebar h2 {
             text-align: center;
         }
 
+        .fc-toolbar-title{
+            font-family: Avenir-Bold;
+        }
+
         .sidebar ul {
             list-style-type: none;
-            padding: 0;
-            margin-top: 40px;
+            padding: 60px 20px 40px 20px;
+            margin: 0;
         }
 
         .sidebar ul li {
-            padding: 16px 10px;
-            border-radius: 8px;
+            padding: 16px 25px;
             display: flex;
             column-gap: 10px;
             transition: color 0.3s;
             align-items: center;
+            border-bottom: 2px solid #b01a1a;
         }
 
         .sidebar ul li:hover {
             background-color: #ffffff;
             cursor: pointer;
+            border-radius: 8px;
         }
 
         .sidebar ul li span{
@@ -80,6 +106,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
 
         .sidebar_logo_container .logo{
@@ -88,9 +115,7 @@
 
         .content {
             flex: 1;
-            padding: 20px 20px 40px 20px;
-            max-height: 100vh;
-            overflow-y: auto;
+            height: 100%;
         }
 
         @media only screen and (max-width: 768px) {
@@ -119,13 +144,15 @@
         </div>
 
         <div class="content">
-            <h2>Calender Content</h2>
-            <p>Welcome to Calender.</p>
+            <div id="calendar"></div>
         </div>
     </div>
 
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <!-- Calender -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 
     <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -133,6 +160,33 @@
     <!-- Script -->
     <script>
         $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                url: "backend.php",
+                contentType: 'application/json',
+                data: JSON.stringify({ reason: 'want_dates' }),
+                success: function (response) {
+                    const datesarray = JSON.parse(response)
+                    const events = datesarray.map(function(date) {
+                        const parts = date.split('-');
+                        const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+                        return {
+                            title: 'Booked',
+                            start: formattedDate
+                        };
+                    })
+                    console.log(events); 
+                  
+                    const calendarEl = document.getElementById('calendar');
+                    const calendar = new FullCalendar.Calendar(calendarEl, {
+                        initialView: 'dayGridMonth',
+                        events: events
+                    });
+
+                    calendar.render();
+                }
+            });
+
             $(".nav-link").click(function(){
                 $(".nav-link").removeClass("active");
                 $(this).addClass("active");
@@ -167,7 +221,10 @@
                     }
                 });
             })
+
         })
+
+            
     </script>
 </body>
 </html>
